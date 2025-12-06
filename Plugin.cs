@@ -15,14 +15,14 @@ namespace RueiHintsManager
         public override Version Version => new(1, 0, 0);
         public override Version RequiredExiledVersion { get; } = new(9, 1, 0);
         
-        private WelcomeMessage _welcomeMessage = new WelcomeMessage();
-        private ServerBadge _serverBadge = new ServerBadge();
+        private WelcomeMessage _welcomeMessage = new();
+        private ServerBadge _serverBadge = new();
         
         public override void OnEnabled()
         {
             Instance = this;
-            _welcomeMessage = new WelcomeMessage();
-            _serverBadge = new ServerBadge();
+            _welcomeMessage = Config.WelcomeMessage;
+            _serverBadge = Config.ServerBadge;
             RegisterEvents();
             base.OnEnabled();
         }
