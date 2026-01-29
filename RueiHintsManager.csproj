@@ -137,6 +137,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Config.cs" />
+        <Compile Include="Handlers\ProximityChatHint.cs" />
         <Compile Include="Handlers\ServerBadge.cs" />
         <Compile Include="Handlers\WelcomeMessage.cs" />
         <Compile Include="Plugin.cs" />

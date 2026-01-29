@@ -12,17 +12,19 @@ namespace RueiHintsManager
         public override string Author => "Morkamo";
         public override string Name => "RueiHintsManager";
         public override string Prefix => Name;
-        public override Version Version => new(1, 0, 0);
+        public override Version Version => new(1, 1, 0);
         public override Version RequiredExiledVersion { get; } = new(9, 1, 0);
         
         private WelcomeMessage _welcomeMessage = new();
         private ServerBadge _serverBadge = new();
+        private ProximityChatHint _proximityChatHint = new();
         
         public override void OnEnabled()
         {
             Instance = this;
             _welcomeMessage = Config.WelcomeMessage;
             _serverBadge = Config.ServerBadge;
+            _proximityChatHint = Config.ProximityChatHint;
             RegisterEvents();
             base.OnEnabled();
         }
@@ -32,6 +34,7 @@ namespace RueiHintsManager
             UnregisterEvents();
             _welcomeMessage = null;
             _serverBadge = null;
+            _proximityChatHint = null;
             Instance = null;
             base.OnDisabled();
         }
@@ -40,12 +43,14 @@ namespace RueiHintsManager
         {
             events.Player.Verified += _welcomeMessage.OnPlayerConnected;
             events.Player.Verified += _serverBadge.OnPlayerConnected;
+            events.Player.Spawned += _proximityChatHint.OnPlayerSpawned;
         }
 
         private void UnregisterEvents()
         {
             events.Player.Verified -= _welcomeMessage.OnPlayerConnected;
             events.Player.Verified -= _serverBadge.OnPlayerConnected;
+            events.Player.Spawned -= _proximityChatHint.OnPlayerSpawned;
         }
     }
 }

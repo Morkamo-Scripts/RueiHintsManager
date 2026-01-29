@@ -10,5 +10,6 @@ namespace RueiHintsManager
         
         public WelcomeMessage WelcomeMessage { get; set; } = new();
         public ServerBadge ServerBadge { get; set; } = new();
+        public ProximityChatHint ProximityChatHint { get; set; } = new();
     }
 }
